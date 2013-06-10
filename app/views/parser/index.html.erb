@@ -1,0 +1,30 @@
+<%= stylesheet_link_tag "parser" %>
+<div class="wrapper">
+	<h1 class="logo">TRANSLATIONS PARSER</h1>
+	<img class="omnom" src="http://habrastorage.org/storage2/40d/abf/2f5/40dabf2f582818a9a02e96b948e4d952.png">
+	<div class="clear"></div>
+	<div class="content">
+		<div class="in">
+			<%= form_tag '/parser', :multipart => true, :class => "translation_form" do %>
+	  		<p>Attach a file: <%= file_field_tag :xls, :class => "textfield" %> </p>
+	  		<p>Choose a platform: <%= select :game, :id, @games.invert %></p>
+	  		<p>
+	  		  Choose languange:
+	  		  <table>
+  	  		  <% @languages.each do |lang| %>
+  	  		    <%= check_box :game, :langs, {:multiple => true}, lang, nil %>
+  	  		    <%= lang %>
+  	  		  <% end %>
+	  		  </table>
+	  		</p>
+	  		<%= submit_tag "To XML!", :class => "button" %>
+			<% end %>
+	<% if @xml.present? and @xml > 0 %>
+	 <%= link_to 'Download the file', 'parser/download', :class => "download_link" %>
+	<% end %>
+
+	<% if @errors.present? %>
+	 <%= render :partial => 'parser/errors.html', :locals => { :errors => @errors } %>
+	<% end %>
+	</div>
+</div>

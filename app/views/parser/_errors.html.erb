@@ -1,0 +1,11 @@
+<%= stylesheet_link_tag    "main" %>
+<div>
+<p class="check"><img class="icon" src="http://dl.dropbox.com/u/604364/x.gif">We've got a lot of errors here, 
+	but you can still <%= link_to 'download the file', 'parser/download'%>.</p>
+<%= "#{errors.length} errors:" %>
+<ul>
+  <% errors.each do |error|  %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
+</div>
